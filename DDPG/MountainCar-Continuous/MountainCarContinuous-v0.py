@@ -36,7 +36,7 @@ check_xml()
 SIZE_HIDDEN_LAYER_ACTOR = 16
 LR_ACTOR = 0.001
 SIZE_HIDDEN_LAYER_CRITIC = 32
-LR_CRITIC = 0.01
+LR_CRITIC = 0.001
 DISC_FACT = 0.99
 TARGET_MODEL_UPDATE = 0.001
 BATCH_SIZE = 64
@@ -51,7 +51,7 @@ params = [SIZE_HIDDEN_LAYER_ACTOR, LR_ACTOR, SIZE_HIDDEN_LAYER_CRITIC, LR_CRITIC
 
 ## Simulation ##
 N_STEPS_TRAIN = 100000
-N_EPISODE_TEST = 100
+N_EPISODE_TEST = 3
 VERBOSE = 1
 # 0: pas de descriptif
 # 1: descriptif toutes les LOG_INTERVAL steps
@@ -100,7 +100,7 @@ x = Dense(SIZE_HIDDEN_LAYER_ACTOR, activation = 'relu')(x)
 # x = Dense(SIZE_HIDDEN_LAYER_ACTOR, activation = 'relu')(x)
 # x = Dense(SIZE_HIDDEN_LAYER_ACTOR, activation = 'relu')(x)
 
-x = Dense(action_size, activation = 'tanh')(x)
+x = Dense(action_size, activation = 'linear')(x)
 actor = Model(inputs = observation_input, outputs=x)
 
 opti_actor = Adam(lr = LR_ACTOR)
