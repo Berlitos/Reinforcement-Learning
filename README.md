@@ -8,7 +8,6 @@ Il y a peu de bonnes vidéos de vulgarisation sur l'apprentissage par renforceme
 
 
 
-
 ## Algorithmes traités
 
 Voici les différents algorithmes que je compte étudier et implémenter :
@@ -24,6 +23,18 @@ Voici les différents algorithmes que je compte étudier et implémenter :
 * [C51](#) (2017) - [Article](https://arxiv.org/pdf/1707.06887.pdf)
 * [Rainbow](#) (2017) - [Article](https://arxiv.org/pdf/1710.02298.pdf)
 * [D4PG](#) (2018) - [Article](https://arxiv.org/pdf/1804.08617.pdf)
+
+
+## Librairie utilisée
+
+Pour ce projet je me suis basé sur la librairie `keras-rl` de TensorFlow. J'utiliserai leur classe `Agent` pour construire mes propres agents. Pour les tests, j'utilise les environnements proposés par OpenAI gim.
+
+## Méthodologie
+
+Je procède de la même manière pour tous les algorithmes :
+Dans un premier temps j'étudie le papier scientifique qui le présente afin de comprendre les choix effectués. 
+Pour l'implémentation je regarde ce qui a déjà été fait et l'adapte à mon code. 
+Je test mon algorithme sur différents environnements et enregistre les résultats.
 
 ## Auteur
 **Jean-Baptiste SIX**
