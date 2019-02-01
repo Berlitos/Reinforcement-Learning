@@ -15,8 +15,8 @@ Voici les différents algorithmes que je compte étudier et implémenter :
 
 ### DONE :
 
-* [DQN](#) (2013) - [Article](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf)
-* [DDPG](#) (2015) - [Article](https://arxiv.org/pdf/1509.02971.pdf)
+* [DQN](https://github.com/Berlitos/Reinforcement-Learning/tree/master/DQN) (2013) - [Article](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf)
+* [DDPG](https://github.com/Berlitos/Reinforcement-Learning/tree/master/DDPG) (2015) - [Article](https://arxiv.org/pdf/1509.02971.pdf)
 
 ### TO DO :
 
