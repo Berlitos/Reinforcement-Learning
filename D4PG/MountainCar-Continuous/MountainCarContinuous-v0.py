@@ -18,6 +18,7 @@ from check_files import check_xml, check_overwrite
 import matplotlib.pyplot as plt
 
 
+
 ##### RECUPERATION DES PARAMETRES #####
 parser = argparse.ArgumentParser(description='Train or test neural net motor controller')
 parser.add_argument('--train', dest='train', action='store_true', default=True)
@@ -33,25 +34,25 @@ check_xml()
 
 ##### INITIALISATION DES CONSTANTES #####
 ## Model ##
-SIZE_HIDDEN_LAYER_ACTOR = 50
+SIZE_HIDDEN_LAYER_ACTOR = 16
 LR_ACTOR = 0.001
-SIZE_HIDDEN_LAYER_CRITIC = 100
+SIZE_HIDDEN_LAYER_CRITIC = 32
 LR_CRITIC = 0.001
-DISC_FACT = 0.9999
+DISC_FACT = 0.99
 TARGET_MODEL_UPDATE = 0.001
 BATCH_SIZE = 64
 REPLAY_BUFFER_SIZE = 100000
 
 ## Exploration ##
 THETA = 0.15
-SIGMA = 0.3
+SIGMA = 0.6
 MEAN = 0
 
 params = [SIZE_HIDDEN_LAYER_ACTOR, LR_ACTOR, SIZE_HIDDEN_LAYER_CRITIC, LR_CRITIC, DISC_FACT, TARGET_MODEL_UPDATE, BATCH_SIZE, REPLAY_BUFFER_SIZE, THETA, SIGMA]
 
 ## Simulation ##
 N_STEPS_TRAIN = 100000
-N_EPISODE_TEST = 100
+N_EPISODE_TEST = 3
 VERBOSE = 1
 # 0: pas de descriptif
 # 1: descriptif toutes les LOG_INTERVAL steps
@@ -64,7 +65,7 @@ FILES_WEIGHTS_NETWORKS = './weights/' + args.model + '.h5f'
 
 ##### CHARGEMENT DE L'ENVIRONNEMENT #####
 
-env = gym.make('Pendulum-v0')
+env = gym.make('MountainCarContinuous-v0')
 env.seed(1234)  # for comparison
 env.reset()
 
@@ -75,10 +76,16 @@ action_low = env.action_space.low
 print('Action low:', action_low)
 action_high = env.action_space.high
 print('Action high: ', action_high)
+# Actions : 
+# 0	Joint effort	-2.0	2.0
 
 ## Examine the state space ##
 state_size = env.observation_space.shape[0]
 print('Size of state:', state_size)
+# Observations : 
+# 0	cos(theta)	-1.0	1.0
+# 1	sin(theta)	-1.0	1.0
+# 2	theta dot	-8.0	8.0
 
 
 ##### ACTOR / CRITIC #####
@@ -91,8 +98,8 @@ x = Flatten()(observation_input)
 x = Dense(SIZE_HIDDEN_LAYER_ACTOR, activation = 'relu')(x)
 x = Dense(SIZE_HIDDEN_LAYER_ACTOR, activation = 'relu')(x)
 x = Dense(SIZE_HIDDEN_LAYER_ACTOR, activation = 'relu')(x)
-x = Dense(SIZE_HIDDEN_LAYER_ACTOR, activation = 'relu')(x)
-x = Dense(SIZE_HIDDEN_LAYER_ACTOR, activation = 'relu')(x)
+# x = Dense(SIZE_HIDDEN_LAYER_ACTOR, activation = 'relu')(x)
+# x = Dense(SIZE_HIDDEN_LAYER_ACTOR, activation = 'relu')(x)
 
 x = Dense(action_size, activation = 'linear')(x)
 actor = Model(inputs = observation_input, outputs=x)
@@ -108,8 +115,8 @@ x = concatenate([action_input, x])
 x = Dense(SIZE_HIDDEN_LAYER_CRITIC, activation = 'relu')(x)
 x = Dense(SIZE_HIDDEN_LAYER_CRITIC, activation = 'relu')(x)
 x = Dense(SIZE_HIDDEN_LAYER_CRITIC, activation = 'relu')(x)
-x = Dense(SIZE_HIDDEN_LAYER_CRITIC, activation = 'relu')(x)
-x = Dense(SIZE_HIDDEN_LAYER_CRITIC, activation = 'relu')(x)
+# x = Dense(SIZE_HIDDEN_LAYER_CRITIC, activation = 'relu')(x)
+# x = Dense(SIZE_HIDDEN_LAYER_CRITIC, activation = 'relu')(x)
 x = Dense(1, activation = 'linear')(x)
 critic = Model(inputs=[action_input, observation_input], outputs=x)
 

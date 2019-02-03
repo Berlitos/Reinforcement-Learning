@@ -75,10 +75,16 @@ action_low = env.action_space.low
 print('Action low:', action_low)
 action_high = env.action_space.high
 print('Action high: ', action_high)
+# Actions : 
+# 0	Joint effort	-2.0	2.0
 
 ## Examine the state space ##
 state_size = env.observation_space.shape[0]
 print('Size of state:', state_size)
+# Observations : 
+# 0	cos(theta)	-1.0	1.0
+# 1	sin(theta)	-1.0	1.0
+# 2	theta dot	-8.0	8.0
 
 
 ##### ACTOR / CRITIC #####
