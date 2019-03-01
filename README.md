@@ -27,7 +27,7 @@ Il y a peu de bonnes vidéos de vulgarisation sur l'apprentissage par renforceme
 Je procède de la même manière pour tous les algorithmes :
 Dans un premier temps j'étudie le papier scientifique qui le présente afin de comprendre les choix effectués. 
 Pour l'implémentation je regarde ce qui a déjà été fait et l'adapte à mon code. 
-Je test mon algorithme sur différents environnements et enregistre les résultats.
+Je teste mon algorithme sur différents environnements et enregistre les résultats.
 
 
 ## Guide d'utilisation
